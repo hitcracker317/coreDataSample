@@ -13,23 +13,26 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
 
     @IBOutlet weak var todoTableView: UITableView!
     
-    var todoArray = []
+    var todoArray:NSMutableArray = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
         
-        self.read()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
+        
+        self.read()
     }
     
     //すでに存在するデータの読み込み処理(保持しているデータを全件取得)。これは定型文なのでコピってしまえばよい
     //CRUDでいう「R」
     func read(){
+        
+        todoArray = [] //配列を初期化
+        
         let appdelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
         //Entityの操作を制御するmanagedObjectContextをappDelegateから作成
@@ -47,50 +50,29 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
                 
                 for managedObject in results {
                     let todo = managedObject as! ToDo
-                    println("title:\(todo.title), saveDate:\(todo.date)")
+                    println("title: \(todo.title), saveDate: \(todo.date)") //EntityのAttributeの値はプロパティの要領で取得
+                    todoArray.addObject(todo.title)
                 }
             }
         }
+        todoTableView.reloadData()
     }
-    
+
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return todoArray.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = UITableViewCell(style: .Default, reuseIdentifier: "cell")
-        cell.textLabel?.text = ""
+        cell.textLabel?.text = "\(todoArray[indexPath.row])"
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
+        //削除
     }
     
     
-    @IBAction func saveContent(sender: AnyObject) {
-        let appdelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        
-        //ENTITYの操作を制御するmanagedObjectContextをappDelegateから作成
-        if let managedObjectContext = appdelegate.managedObjectContext{
-            
-            //新しくデータを作成するためのEntityを作成
-            let managedObject:AnyObject = NSEntityDescription.insertNewObjectForEntityForName("ToDo", inManagedObjectContext: managedObjectContext)
-            
-            //TODO EntityからObjectを生成し、Atrrtibutesに接続した値を代入
-            let todo = managedObject as! ToDo
-            todo.title = "bbbbbb"
-            todo.date = NSDate()
-            
-            
-            //***** データの保存 ****//
-            //CoreDataは少し特殊で上記でAttributedにデータを追加するだけでははすぐに保存処理はされない
-            //一定期間において保存されるか、アプリを終了時にAppDelegateに定義してある
-            //applicationWillTerminate()内のsaveContext()が発動した際に保存処理が実行される
-            
-            appdelegate.saveContext() //データの保存処理(これ忘れないでね！)
-        }
-    }
     
     @IBAction func deleteContent(sender: AnyObject) {
         let appdelegate = UIApplication.sharedApplication().delegate as! AppDelegate
