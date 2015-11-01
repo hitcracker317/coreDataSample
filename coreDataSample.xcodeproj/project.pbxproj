@@ -15,6 +15,7 @@
 		DC0D4E8D1BE1EBBE0057E50C /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC0D4E8B1BE1EBBE0057E50C /* LaunchScreen.xib */; };
 		DC0D4E991BE1EBBF0057E50C /* coreDataSampleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D4E981BE1EBBF0057E50C /* coreDataSampleTests.swift */; };
 		DC0D4EA31BE1EC130057E50C /* ToDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC0D4EA21BE1EC130057E50C /* ToDo.swift */; };
+		DCF2C7731BE5CD9D00696E09 /* ToDoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCF2C7721BE5CD9D00696E09 /* ToDoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		DC0D4E971BE1EBBF0057E50C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC0D4E981BE1EBBF0057E50C /* coreDataSampleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = coreDataSampleTests.swift; sourceTree = "<group>"; };
 		DC0D4EA21BE1EC130057E50C /* ToDo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDo.swift; sourceTree = "<group>"; };
+		DCF2C7721BE5CD9D00696E09 /* ToDoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +86,7 @@
 				DC0D4EA21BE1EC130057E50C /* ToDo.swift */,
 				DC0D4E7F1BE1EBBE0057E50C /* AppDelegate.swift */,
 				DC0D4E841BE1EBBE0057E50C /* ViewController.swift */,
+				DCF2C7721BE5CD9D00696E09 /* ToDoViewController.swift */,
 				DC0D4E861BE1EBBE0057E50C /* Main.storyboard */,
 				DC0D4E891BE1EBBE0057E50C /* Images.xcassets */,
 				DC0D4E8B1BE1EBBE0057E50C /* LaunchScreen.xib */,
@@ -218,6 +221,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DCF2C7731BE5CD9D00696E09 /* ToDoViewController.swift in Sources */,
 				DC0D4E851BE1EBBE0057E50C /* ViewController.swift in Sources */,
 				DC0D4E831BE1EBBE0057E50C /* coreDataSample.xcdatamodeld in Sources */,
 				DC0D4E801BE1EBBE0057E50C /* AppDelegate.swift in Sources */,
@@ -417,6 +421,7 @@
 				DC0D4E9E1BE1EBBF0057E50C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DC0D4E9F1BE1EBBF0057E50C /* Build configuration list for PBXNativeTarget "coreDataSampleTests" */ = {
 			isa = XCConfigurationList;
@@ -425,6 +430,7 @@
 				DC0D4EA11BE1EBBF0057E50C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
