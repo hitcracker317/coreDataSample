@@ -50,7 +50,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
                 
                 for managedObject in results {
                     let todo = managedObject as! ToDo
-                    println("title: \(todo.title), saveDate: \(todo.date)") //EntityのAttributeの値はプロパティの要領で取得
+                    println("取得したデータ => title: \(todo.title), saveDate: \(todo.date)") //EntityのAttributeの値はプロパティの要領で取得
                     todoArray.addObject(todo.title)
                 }
             }
@@ -69,12 +69,8 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        //削除
-    }
-    
-    
-    
-    @IBAction func deleteContent(sender: AnyObject) {
+        //Todoを削除
+        
         let appdelegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
         //Entityの操作を制御するmanagedObjectContextをappDelegateから作成
@@ -82,11 +78,12 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
             
             let entity = NSEntityDescription.entityForName("ToDo", inManagedObjectContext: managedObjectContext) //Entityを取得(エンティティ名を指定)
             
-            let fetchRequerst = NSFetchRequest(entityName: "ToDo") //エンティティ名を指定
+            let fetchRequerst = NSFetchRequest(entityName: "ToDo") //どのエンティティを取得するのかを指定
             fetchRequerst.entity = entity
             
-            //データを1件取得する
-            let predicate = NSPredicate(format: "%K = %@","title","bbbbbb")
+            //文字列を指定することで削除する対象のデータを取得する
+            var todoString:String = todoArray[indexPath.row] as! String
+            let predicate = NSPredicate(format: "%K = %@","title",todoString)
             fetchRequerst.predicate = predicate
             
             var error:NSError? = nil //エラーが発生した際にキャッチするための変数
@@ -97,17 +94,14 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
                 for managedObject in results {
                     let todo = managedObject as! ToDo
                     println("削除するデータ => title;\(todo.title), saveDate:\(todo.date)")
-                    
-                    //削除処理の本体
-                    managedObjectContext.deleteObject(managedObject as! NSManagedObject)
-                    
-                    //削除したことも保存しておかないと反映されないよ！
-                    appdelegate.saveContext()
+                    managedObjectContext.deleteObject(managedObject as! NSManagedObject) //削除処理の本体
+                    appdelegate.saveContext() //削除したことも保存しておかないと反映されないよ！
+                    todoArray.removeObjectAtIndex(indexPath.row)
                 }
+                
+                self.read() //削除した後のデータを再読み込みする
             }
         }
     }
-
-
 }
 

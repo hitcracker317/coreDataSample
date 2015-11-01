@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "coreDataSample/ViewController.swift"
-            timestampString = "468050874.830747"
+            timestampString = "468051817.225988"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
             landmarkName = "read()"
             landmarkType = "5">
          </BreakpointContent>
